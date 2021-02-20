@@ -1,0 +1,156 @@
+swagger: "2.0"
+info:
+  description: This is the swagger file that describes Shepherd API
+  version: "1.0.0"
+  title: Shepherd Rest API
+consumes:
+  - application/json
+produces:
+  - application/json
+
+basePath: /yak-shop
+
+# Paths supported by the server application
+paths:
+  /herd/{day}:
+    get:
+      operationId: shepherd.yakshopapi.read_all_labyaks
+      tags:
+        - Herd
+      summary: Get labyaks
+      description: Get list of labyak for selected day. Data is actual on the selected day.
+      parameters:
+        - name: day
+          in: path
+          type: integer
+          description: Day number
+          required: true
+      responses:
+        200:
+          description: List of labyaks
+          schema:
+            type: object
+            properties:
+              herd:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    age:
+                      type: number
+                    age-last-shaved:
+                        type: number
+  /stock/{day}:
+    get:
+      operationId: shepherd.yakshopapi.report_stocks
+      tags:
+        - Stock
+      summary: Get stock
+      description: Report resources that are in stock for selected day
+      parameters:
+        - name: day
+          in: path
+          type: integer
+          description: Selected day
+          required: true
+      responses:
+        200:
+          description: Stock report
+          schema:
+            type: object
+            properties:
+              milk:
+                type: number
+              skins:
+                type: integer
+
+  /order/{day}:
+    get:
+      operationId: shepherd.yakshopapi.find_orders
+      tags:
+        - Order
+      summary: Get orders for this day
+      description: Get list of order for selected day
+      parameters:
+        - name: day
+          in: path
+          required: True
+          type: integer
+      responses:
+        200:
+          description: List of orders
+          schema:
+            type: array
+            items:
+              properties:
+                customer:
+                  type: string
+                status:
+                  type: string
+                requested:
+                  type: object
+                  properties:
+                    milk:
+                      type: number
+                    skins:
+                      type: integer
+                allocated:
+                  type: object
+                  properties:
+                    milk:
+                      type: number
+                    skins:
+                      type: integer
+    post:
+      operationId: shepherd.yakshopapi.place_order
+      tags:
+        - Order
+      summary: Place order
+      description: Place an order for this day, if there is enough resources.
+      parameters:
+        - name: day
+          in: path
+          required: True
+          type: integer
+        - name: order
+          in: body
+          description: Order details
+          required: True
+          schema:
+            type: object
+            properties:
+              customer:
+                type: string
+                description: Customer identifier
+              order:
+                type: object
+                properties:
+                  milk:
+                    type: number
+                  skins:
+                    type: integer
+      responses:
+        201:
+          description: Successfully placed order
+          schema:
+            type: object
+            properties:
+              milk:
+                type: number
+              skins:
+                type: integer
+        206:
+          description: Partially successfully placed order.
+          schema:
+            type: object
+            properties:
+              milk:
+                type: number
+              skins:
+                type: integer
+        400:
+          description: Invalid input.
+        404:
+          description: Not enough resources in stock for this day.

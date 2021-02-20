@@ -1,0 +1,4 @@
+include shepherd/schema.sql
+graft shepherd/static
+graft shepherd/templates
+global-exclude *.pyc

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shepherd</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css">
+    <link rel="stylesheet" href="static/css/overview.css">
+    <script
+            src="http://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous">
+    </script>
+    <script src="static/js/overview.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1 class="banner">Shepherd</h1>
+    <h2 id="day_banner" class="banner">Day: 0</h2>
+    <div class="editor">
+        <a id="prev_day_button" href="/overview?day=0"><< yesterday</a>
+        <a id="next_day_button" href="/overview?day=1">tomorrow >></a>
+    </div>
+    <div class="section editor">
+        <form onsubmit="placeOrder(); return false">
+            <label for="customer">Customer
+                <input id="customer" type="text" value="me" required/>
+            </label>
+            <br/>
+            <label for="milk">Milk
+                <input id="milk" type="number" value="10.0" step="0.001" min="0" required/>
+            </label>
+            <br/>
+            <label for="skins">Skins
+                <input id="skins" type="number" value="1" min="0" required/>
+            </label>
+            <br/>
+            <input type="submit"/>
+        </form>
+    </div>
+    <div id="messageBox">
+    </div>
+</div>
+<div class="block">
+    <table>
+        <caption>Stock</caption>
+        <tbody>
+        <tr>
+            <td>Milk</td>
+            <td id="milkCell">0</td>
+        </tr>
+        <tr>
+            <td>Skins</td>
+            <td id="skinsCell">0</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div class="block">
+    <table>
+        <caption>Herd</caption>
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Last shaved age</th>
+        </tr>
+        </thead>
+        <tbody id="herdTable">
+        </tbody>
+    </table>
+</div>
+<div class="block">
+    <table>
+        <caption>Today's Orders</caption>
+        <thead>
+        <tr>
+            <th rowspan="2">Customer</th>
+            <th colspan="2">Requested</th>
+            <th colspan="2">Allocated</th>
+            <th rowspan="2">Status</th>
+        </tr>
+        <tr>
+            <th>Milk</th>
+            <th>Skins</th>
+            <th>Milk</th>
+            <th>Skins</th>
+        </tr>
+        </thead>
+        <tbody id="orderTable">
+            <tr>
+                <th colspan="6">No orders yet</th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
