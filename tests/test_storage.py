@@ -1,7 +1,4 @@
 import sqlite3
-from pprint import pprint
-from typing import List
-
 import pytest
 
 from shepherd import storage
@@ -70,11 +67,11 @@ def test_save_order(app):
 
 
 @pytest.mark.parametrize(('day', 'milk', 'skins'), (
-    (0, 0, 0),
-    (13, 0, 0),
-    (14, 1100, 6),
-    (15, 1100, 6),
-    (40, 2100, 7),
+        (0, 0, 0),
+        (13, 0, 0),
+        (14, 1100, 6),
+        (15, 1100, 6),
+        (40, 2100, 7),
 ))
 def test_stock_allocated_one_day(app, day, milk, skins):
     with app.app_context():

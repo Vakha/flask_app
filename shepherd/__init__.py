@@ -45,6 +45,10 @@ def create_app(test_config=None):
     def overview():
         return render_template('overview.html')
 
+    @app.route('/healthcheck')
+    def healthcheck():
+        return 'Ok'
+
     # Read the swagger.yml file to configure the endpoints
     app.add_api("swagger.yml", strict_validation=True)
 
