@@ -1,6 +1,18 @@
 # Shepherd
 _Herd management system_
 
+## Project structure
+- **shepherd** - folder with flask application
+  - **swagger.yml** - API specification with mapping to python function in `yakshopapi` module 
+  - **yakshopapi.py** - Adapter between RESTAPI and `service`
+  - **service.py** - Business logic implementation
+  - **product_calculator.py** - Util module to calculate milk and skins production
+  - **storage.py** - Persistence module, works with database
+  - **db.py** - Setup database connection
+  - **__init.py__** - Create Flask application
+  - **parser.py** - Parser of xml file with herd   
+- **tests** - test folder
+
 ## Requirements
  - Python 3.8+
  - pip
@@ -54,6 +66,9 @@ flask write-test-data tests/data.sql
 flask run
 ```
 
+## Explore API specification
+Open http://127.0.0.1:5000/yak-shop/ui in your favourite browser.
+
 ## Explore application
 Open http://127.0.0.1:5000/ in your favourite browser, and you'll be redirected to overview page.
 Overview page contains
@@ -64,3 +79,46 @@ Overview page contains
 - Order list for current day
 
 ## Run test
+```bash
+pytest
+```
+
+## Check test coverage
+1. Run test with coverage
+```bash
+coverage run -m pytest
+```
+2. See report in terminal
+```bash
+coverage report
+```
+3. More detailed html report
+```bash
+coverage html
+open htmlcov/index.html
+```
+
+## Make distribution file
+```bash
+python setup.py bdist_wheel
+```
+`.whl` file could be found in `dist` folder
+```bash
+ls dist/shepherd-1.0.0-py3-none-any.whl
+```
+Could be run on another machine as following:
+```bash
+pip install shepherd-1.0.0-py3-none-any.whl
+flask init-db
+flask write-test-data $TEST_DATA_FILE
+flask run 
+```
+Note:
+If you see this message
+```
+The swagger_ui directory could not be found.
+```
+run the following command (must be quoted in `zsh`)
+```bash
+pip install 'connexion[swagger-ui]'
+```
