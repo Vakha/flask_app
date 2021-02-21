@@ -25,7 +25,18 @@ _Herd management system_
       - **overview.js** - Scripts supporting overview.html
 - **tests** - test folder
 
+## Checkout project
+```bash
+git clone https://github.com/Vakha/flask_app
+cd flask_app
+```
+
 ## Run as prebuild docker image locally
+### Requirements
+- docker 
+- docker-compose
+
+Simply run following command 
 ```bash
 docker-compose up -d
 ```
@@ -48,21 +59,16 @@ Overview page contains:
  - Python 3.8+
  - pip
 
-1. Checkout project
-```bash
-git clone https://github.com/Vakha/flask_app
-cd flask_app
-```
-2. Setup and activate virtual environment
+1. Setup and activate virtual environment
 ```bash
 python3 -m venv venv
 . venv/bin/activate
 ```
-3. Install dependencies
+2. Install dependencies
 ```bash
 pip install -r requirements.txt
 ```
-4. Add project root to python path
+3. Add project root to python path
 ```bash
 export PYTHONPATH="${PYTHONPATH}:$(pwd)"
 ```
