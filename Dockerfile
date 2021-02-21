@@ -1,10 +1,12 @@
 FROM python:3.8
 
-COPY dist/shepherd-1.0.0-py3-none-any.whl shepherd.whl
+COPY dist/shepherd-1.0.0-py3-none-any.whl shepherd-1.0.0-py3-none-any.whl
 
-RUN pip install shepherd.whl
+RUN pip install shepherd-1.0.0-py3-none-any.whl
 
 RUN pip install 'connexion[swagger-ui]'
+
+ENV FLASK_APP=shepherd
 
 COPY tests/data.sql data.sql
 
@@ -12,4 +14,6 @@ RUN flask init-db
 
 RUN flask write-test-data data.sql
 
-CMD flask run
+EXPOSE 8081
+
+CMD flask run --port=8081
