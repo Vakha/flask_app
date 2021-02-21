@@ -1,6 +1,10 @@
 # Shepherd
 _Herd management system_
 
+## Currently available by following URLs
+- http://35.204.73.169/
+- http://35.204.73.169/yak-shop/ui
+
 ## Project structure
 - **shepherd** - folder with flask application
   - **swagger.yml** - API specification with mapping to python function in `yakshopapi` module 
@@ -21,15 +25,33 @@ _Herd management system_
       - **overview.js** - Scripts supporting overview.html
 - **tests** - test folder
 
-## Requirements
+## Run as prebuild docker image locally
+```bash
+docker-compose up -d
+```
+
+## Explore API specification
+Open http://127.0.0.1:5000/yak-shop/ui in your favourite browser.
+
+## Explore application
+Open http://127.0.0.1:5000/ in your favourite browser, and you'll be redirected to overview page.
+
+Overview page contains:
+- Navigation between days
+- Ordering form
+- Amount of resources in stock
+- Herd list (as for current day)
+- Order list for current day
+
+## Installation
+### Requirements
  - Python 3.8+
  - pip
 
-## Installation
 1. Checkout project
 ```bash
-git clone https://github.com/Vakha/xccelerated_task
-cd xccelerated_task
+git clone https://github.com/Vakha/flask_app
+cd flask_app
 ```
 2. Setup and activate virtual environment
 ```bash
@@ -74,18 +96,6 @@ flask write-test-data tests/data.sql
 flask run
 ```
 
-## Explore API specification
-Open http://127.0.0.1:5000/yak-shop/ui in your favourite browser.
-
-## Explore application
-Open http://127.0.0.1:5000/ in your favourite browser, and you'll be redirected to overview page.
-Overview page contains
-- Navigation between days
-- Ordering form
-- Amount of resources in stock
-- Herd list (as for current day)
-- Order list for current day
-
 ## Run test
 ```bash
 pytest
@@ -129,4 +139,13 @@ The swagger_ui directory could not be found.
 run the following command (must be quoted in `zsh`)
 ```bash
 pip install 'connexion[swagger-ui]'
+```
+
+## Build docker image
+```bash
+docker build -t vakha/shepherd:latest .
+```
+then run
+```bash
+docker-compose up -d
 ```
