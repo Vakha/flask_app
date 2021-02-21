@@ -87,7 +87,6 @@ python shepherd/herd.py herd.xml 14
 ```bash
 export FLASK_APP=shepherd
 export FLASK_ENV=development
-flask run
 ```
 2. Initialise database schema
 ```bash
