@@ -9,8 +9,16 @@ _Herd management system_
   - **product_calculator.py** - Util module to calculate milk and skins production
   - **storage.py** - Persistence module, works with database
   - **db.py** - Setup database connection
-  - **__init.py__** - Create Flask application
-  - **parser.py** - Parser of xml file with herd   
+  - **\_\_init\_\_.py** - Create Flask application
+  - **parser.py** - Parser of xml file with herd
+  - **schema.sql** - Script to setup database schema
+  - **model.py** - Dataclasses of core system objects
+  - **records** - Convertor of model from/to db records
+  - **templates** - Jinja2 html templates
+    - **overview.html** - Html for single page application
+  - **static** - Static content
+    - **js** - JavaScript
+      - **overview.js** - Scripts supporting overview.html
 - **tests** - test folder
 
 ## Requirements
