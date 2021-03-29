@@ -2,8 +2,8 @@
 _Herd management system_
 
 ## Currently available by following URLs
-- http://35.204.73.169/
-- http://35.204.73.169/yak-shop/ui
+- http://35.204.203.203/
+- http://35.204.203.203/yak-shop/ui
 
 ## Project structure
 - **shepherd** - folder with flask application
