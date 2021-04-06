@@ -5,6 +5,12 @@ _Herd management system_
 - http://35.204.203.203/
 - http://35.204.203.203/yak-shop/ui
 
+## System Context diagram (C4 Level 1)
+![Level 1](diagrams/Shepherd-Level-1.jpeg)
+
+## Container diagram (C4 Level 2)
+![Level 2](diagrams/Shepherd-Level-2.jpeg)
+
 ## Project structure
 - **shepherd** - folder with flask application
   - **swagger.yml** - API specification with mapping to python function in `yakshopapi` module 
